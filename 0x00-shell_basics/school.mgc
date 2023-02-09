@@ -1,2 +1,2 @@
-etc/magic
-file School
+0	string |SCHOOL School
+!:mime School
