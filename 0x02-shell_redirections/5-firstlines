@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/bin/activate
 head -n 10 /etc/passwd
