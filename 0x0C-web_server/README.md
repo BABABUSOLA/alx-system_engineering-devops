@@ -10,3 +10,8 @@ Then run : sudo ./1-install_nginx_web_server
 Task 2-
 
 Domain setup guide: https://docs.google.com/document/d/1QIjkJMmrOy5k7KHs4ztnFx-fBXPpxxJ4yZpxi5JSk4s/edit
+
+Task 3: 
+
+Follow step 1 ,
+then run: sudo ./3-redirection
