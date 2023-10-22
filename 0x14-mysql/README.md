@@ -206,3 +206,7 @@ Certainly! Here are the steps to achieve what you described:
    This command is required after granting or revoking privileges.
 
 Now, `replica_user` is created with replication privileges, and `holberton_user` has the privilege to select from the `mysql.user` table. Remember to replace `'your_password_here'` with actual secure passwords. Always consider the security implications of creating new users and granting privileges.
+
+Task 5:
+Use this to copy from the machine to the first and second server, example of the command for the second server below:
+sudo ~/0-transfer_file ./5-mysql_backup 100.25.130.228 ubuntu ~/.ssh/id_rsa
