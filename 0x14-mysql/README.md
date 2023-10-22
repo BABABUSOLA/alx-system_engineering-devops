@@ -160,3 +160,49 @@ Here are the steps to create the database `tyrell_corp`, create a table `nexus6`
    ```
 
 This sequence of steps creates the database, table, inserts a record, and grants the necessary permissions to `holberton_user`.
+
+Certainly! Here are the steps to achieve what you described:
+
+1. **Create a Replica User**:
+
+   ```sql
+   CREATE USER 'replica_user'@'%' IDENTIFIED BY 'projectcorrection280hbtn';
+   ```
+
+   Replace `'projectcorrection280hbtn'` with the actual password you want to use.
+
+2. **Grant Replication Permissions**:
+
+   ```sql
+   GRANT REPLICATION SLAVE ON *.* TO 'replica_user'@'%';
+   ```
+
+   This command grants replication privileges to `replica_user`.
+
+3. **Create `holberton_user`**:(SKIP STEP 3 SINCE WE ALREADY CREATED IT IN TASK 1)
+
+   ```sql
+   CREATE USER 'holberton_user'@'localhost' IDENTIFIED BY 'projectcorrection280hbtn';
+   ```
+
+   Replace `'projectcorrection280hbtn'` with the actual password for `holberton_user`.
+
+4. **Grant SELECT Privileges for `mysql.user`**:
+
+   ```sql
+   GRANT SELECT ON mysql.user TO 'holberton_user'@'localhost';
+   ```
+
+   This grants `holberton_user` the privilege to select from the `mysql.user` table.
+
+5. **Flush Privileges**:
+
+   After making changes, you need to reload the privileges for them to take effect:
+
+   ```sql
+   FLUSH PRIVILEGES;
+   ```
+
+   This command is required after granting or revoking privileges.
+
+Now, `replica_user` is created with replication privileges, and `holberton_user` has the privilege to select from the `mysql.user` table. Remember to replace `'your_password_here'` with actual secure passwords. Always consider the security implications of creating new users and granting privileges.
