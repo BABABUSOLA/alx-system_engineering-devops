@@ -88,3 +88,75 @@ Now, `holberton_user` should be able to check the replication status on both `we
 Please remember to replace `your_password_here` with the actual password you want to use. Always consider the security implications of creating new users and granting privileges. Make sure to follow best practices for user management.
 
 TASK 2:
+Here are the steps to create the database `tyrell_corp`, create a table `nexus6`, add an entry, and grant `SELECT` permissions to `holberton_user`:
+
+1. **Access MySQL on web-01**:
+
+   ```bash
+   mysql -u root -p
+   ```
+
+   You will be prompted for the MySQL root password.
+
+2. **Create the database**:
+
+   ```sql
+   CREATE DATABASE tyrell_corp;
+   ```
+
+   This command creates the `tyrell_corp` database.
+
+3. **Switch to the `tyrell_corp` database**:
+
+   ```sql
+   USE tyrell_corp;
+   ```
+
+   This command makes the `tyrell_corp` database the active database.
+
+4. **Create the table `nexus6`**:
+
+   ```sql
+   CREATE TABLE nexus6 (
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     name VARCHAR(50)
+   );
+   ```
+
+   This command creates a table named `nexus6` with columns `id`, `model`, and `serial_number`.
+
+5. **Insert at least one entry**:
+
+   ```sql
+   INSERT INTO nexus6 (name) VALUES ('Nexus 6');
+   ```
+
+   This command inserts a row into the `nexus6` table.
+
+6. **Grant SELECT permissions to `holberton_user`**:
+
+   ```sql
+   GRANT SELECT ON tyrell_corp.nexus6 TO 'holberton_user'@'localhost';
+   ```
+
+   This command grants `SELECT` permission on the `nexus6` table to `holberton_user`.
+
+7. **Flush privileges**:
+
+   After making changes, you need to reload the privileges for them to take effect:
+
+   ```sql
+   FLUSH PRIVILEGES;
+   ```
+
+8. **Verify**:
+
+   You can now exit the MySQL shell and log in as `holberton_user`. You should be able to select data from the `nexus6` table.
+
+   ```bash
+   mysql -u holberton_user -p
+   USE tyrell_corp;
+   SELECT * FROM nexus6;
+   ```
+
+This sequence of steps creates the database, table, inserts a record, and grants the necessary permissions to `holberton_user`.
