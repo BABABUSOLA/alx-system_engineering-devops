@@ -16,7 +16,9 @@ symbolic-links=0
 
 server-id = 2
 
-relay-log = /var/log/mysql/mysql-relay-bin
-
 log_bin = /var/log/mysql/mysql-bin.log
 
+# Database we want to replicate
+binlog_do_db    = tyrell_corp
+# Defines the location of the replica's relay log
+relay-log       = /var/log/mysql/mysql-relay-bin.log
