@@ -35,3 +35,56 @@ mysql-server:
 Now install mysql 5.7
 
 sudo apt install -f mysql-client=5.7* mysql-community-server=5.7* mysql-server=5.7*
+
+
+TASK 1
+
+To achieve this, you'll need to log in to each MySQL server (`web-01` and `web-02`) and perform the necessary steps. Here's a step-by-step guide:
+
+1. **Access MySQL on web-01**:
+
+   ```bash
+   mysql -u root -p
+   ```
+
+   You will be prompted for the MySQL root password.
+
+2. **Create the user**:
+
+   ```sql
+   CREATE USER 'holberton_user'@'localhost' IDENTIFIED BY 'projectcorrection280hbtn';
+   ```
+
+   This command creates the user `holberton_user` with the specified password and allows them to connect only from the `localhost`.
+
+3. **Grant necessary privileges**:
+
+   To allow `holberton_user` to check replication status, you need to grant the `REPLICATION CLIENT` privilege:
+
+   ```sql
+   GRANT REPLICATION CLIENT ON *.* TO 'holberton_user'@'localhost';
+   ```
+
+   Additionally, if you want to allow `holberton_user` to view status, you can grant the `SHOW DATABASES` privilege:
+
+   ```sql
+   GRANT SHOW DATABASES ON *.* TO 'holberton_user'@'localhost';
+   ```
+
+4. **Flush privileges**:
+
+   After making changes, you need to reload the privileges for them to take effect:
+
+   ```sql
+   FLUSH PRIVILEGES;
+   ```
+
+5. **Repeat the above steps on web-02**:
+
+   Log in to `web-02`, access MySQL, and repeat the same steps to create the `holberton_user` with the specified details and grant necessary privileges.
+
+Now, `holberton_user` should be able to check the replication status on both `web-01` and `web-02` servers.
+
+Please remember to replace `your_password_here` with the actual password you want to use. Always consider the security implications of creating new users and granting privileges. Make sure to follow best practices for user management.
+
+TASK 2:
