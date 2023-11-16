@@ -1,6 +1,11 @@
-# Configures Nginx to serve the route /airbnb-onepage/ from AirBnB_clone_v2.
+#!/usr/bin/env bash
+# Installs, configures, and starts the server
+sudo apt-get update
+sudo apt-get -y install nginx
+sudo ufw allow 'Nginx HTTP'
 
-server {
+SERVER_CONFIG=\
+"server {
     # Listen on port 80
     listen      80 default_server;
     listen      [::]:80 default_server ipv6only=on;
@@ -22,4 +27,12 @@ server {
         root /var/www/html;
         internal;
     }
-}
+}"
+
+bash -c "echo -e '$SERVER_CONFIG' > /etc/nginx/sites-enabled/default"
+                                                                                                                                  1,1           To
+if [ "$(pgrep -c nginx)" -le 0 ]; then
+        sudo service nginx start
+else
+        sudo service nginx restart
+fi
